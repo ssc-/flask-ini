@@ -1,6 +1,6 @@
-# Flask-Ini
+# Flask-ini
 
-Flask-Ini is a Flask extension that allows your application to be
+Flask-ini is a Flask extension that allows your application to be
 configured with ConfigParser ini files.
 
 Reasons you may want to do this include:
@@ -17,7 +17,7 @@ Reasons you may want to do this include:
 
 Install the extension with the following commands:
 
-    $ pip install flask-ini
+    $ pip install Flask-ini
     
 ## Usage
 
@@ -51,7 +51,7 @@ to update Flask's own config object, according to the following rules:
 Please note the following:
 
 * One variable in the `default_config` has the type
-  `datetime.timedelta`. Flask-Ini can read this variable from your ini
+  `datetime.timedelta`. Flask-ini can read this variable from your ini
   file and it will be interpreted as an integer number of days. If you
   want a more specfic delta it is recommended that you configure this
   variable another way.
@@ -81,7 +81,6 @@ from flask import Flask
 from flask_ini import FlaskIni
 
 app = Flask(__name__)
-app.debug = True
 app.iniconfig = FlaskIni()
 with app.app_context():
     app.iniconfig.read('/etc/myapp.conf')
