@@ -11,7 +11,7 @@ class BasicTestCase(unittest.TestCase):
     def setUp(self):
         test_config_file = StringIO.StringIO('''
 [flask]
-secret                     : 12345678 ; should be a string
+secret_key                 : 12345678 ; should be a string
 debug                      : true
 permanent_session_lifetime : 100
 server_name                = testserv
@@ -39,7 +39,7 @@ interp : %(bar)s/hi
         self.app = app
 
     def test_string_var(self):
-        self.assertEqual(self.app.config['SECRET'], '12345678')
+        self.assertEqual(self.app.config['SECRET_KEY'], '12345678')
 
     def test_bool_var(self):
         self.assertEqual(self.app.config['DEBUG'], True)
@@ -60,6 +60,7 @@ interp : %(bar)s/hi
 
     def test_vars_are_used_by_flask(self):
         self.assertEqual(self.app.debug, True)
+        self.assertEqual(self.app.secret_key, '12345678')
         with self.app.app_context():
             self.assertEqual(flask.url_for('hello_world'),
                              'http://testserv/hello')
