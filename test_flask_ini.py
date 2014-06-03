@@ -2,6 +2,7 @@ import unittest
 import datetime
 import StringIO
 import tempfile
+import configparser
 
 import flask
 from flask_ini import FlaskIni
@@ -11,7 +12,8 @@ class BasicTestCase(unittest.TestCase):
     def setUp(self):
         test_config_file = StringIO.StringIO('''
 [flask]
-secret_key                 : 12345678 ; should be a string
+; should be a string
+secret_key                 : 12345678
 debug                      : true
 permanent_session_lifetime : 100
 server_name                = testserv
@@ -74,6 +76,12 @@ interp : %(bar)s/hi
     def test_interp_var(self):
         self.assertEqual(self.app.iniconfig.get('foo bar', 'interp'),
                                                'http://baz/qux/hi')
+
+    def test_supports_fallback(self):
+        with self.assertRaises(configparser.NoOptionError):
+            self.app.iniconfig.get('flask', 'non-existent option')
+
+        self.assertEqual(self.app.iniconfig.get('flask', 'non-existent option', fallback='value'), 'value')
 
 # Also test we can read OK from a file using the read() method
 class ReadFromFileTestCase(unittest.TestCase):
