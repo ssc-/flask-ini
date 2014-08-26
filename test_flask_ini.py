@@ -43,6 +43,9 @@ interp : %(bar)s/hi
     def test_string_var(self):
         self.assertEqual(self.app.config['SECRET_KEY'], '12345678')
 
+    def test_secret_key_is_str(self):
+        self.assertIsInstance(self.app.config['SECRET_KEY'], str)
+
     def test_bool_var(self):
         self.assertEqual(self.app.config['DEBUG'], True)
 

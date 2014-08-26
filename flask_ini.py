@@ -44,13 +44,15 @@ class FlaskIni(configparser.SafeConfigParser):
 
         # One of the default config vars is a timedelta - interpret it
         # as an int and construct using it
-        if type(default) is datetime.timedelta:
+        if isinstance(default, datetime.timedelta):
             current_app.config[key_u] = datetime.timedelta(self.getint('flask', key))
-        elif type(default) is bool:
+        elif isinstance(default, bool):
             current_app.config[key_u] = self.getboolean('flask', key)
-        elif type(default) is float:
+        elif isinstance(default, float):
             current_app.config[key_u] = self.getfloat('flask', key)
-        elif type(default) is int:
+        elif isinstance(default, int):
             current_app.config[key_u] = self.getint('flask', key)
         else:
-            current_app.config[key_u] = self.get('flask', key)
+            # All the string keys need to be coerced into str()
+            # because Flask expects some of them not to be unicode
+            current_app.config[key_u] = str(self.get('flask', key))
