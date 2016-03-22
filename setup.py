@@ -8,11 +8,11 @@ from setuptools import setup
 
 setup(
     name='Flask-ini',
-    version='0.2.1',
-    url='https://github.com/trendmicro/flask-ini',
+    version='0.2.2',
+    url='https://github.com/ssc-/flask-ini',
     license='BSD',
-    author='Rich Daley',
-    author_email='rich@richd.me',
+    author='Rich Daley, Sebastian Schmelzer',
+    author_email='rich@richd.me, ssc@xss.nu',
     description='Allow Flask to be configured with configparser ini files',
     long_description=__doc__,
     py_modules=['flask_ini'],

@@ -22,7 +22,7 @@ Install the extension with the following commands:
 ## Usage
 
 The FlaskIni object is a subclass of
-[configparser.SafeConfigParser](https://docs.python.org/3/library/configparser.html)
+[configparser.ConfigParser](https://docs.python.org/3/library/configparser.html)
 and all of its methods are available.
 
 When you use the `read()` or `readfp()` method, you must be in your

@@ -1,6 +1,6 @@
 import unittest
 import datetime
-import StringIO
+from io import StringIO
 import tempfile
 import configparser
 
@@ -10,7 +10,7 @@ from flask_ini import FlaskIni
 class BasicTestCase(unittest.TestCase):
 
     def setUp(self):
-        test_config_file = StringIO.StringIO('''
+        test_config_file = StringIO('''
 [flask]
 ; should be a string
 secret_key                 : 12345678
@@ -102,3 +102,5 @@ class ReadFromFileTestCase(unittest.TestCase):
         self.assertEqual(self.app.config['SECRET'], 'abcxyz')
         self.assertEqual(self.app.debug, True)
 
+if __name__ == '__main__':
+    unittest.main()
